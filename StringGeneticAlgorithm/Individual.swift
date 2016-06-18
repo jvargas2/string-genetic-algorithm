@@ -1,6 +1,6 @@
 //
 //  Individual.swift
-//  HexCodeGeneticAlgorithm
+//  StringGeneticAlgorithm
 //
 //  Created by Jorge Vargas on 5/22/16.
 //  Copyright © 2016 Jorge Vargas. All rights reserved.
