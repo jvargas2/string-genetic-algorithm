@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="jwE-Aj-j1l">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="iU0-o0-fGG">
+            <objects>
+                <viewController id="yPS-KE-Xlm" customClass="ViewController" customModule="StringGeneticAlgorithm" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1Vd-NP-jDb"/>
+                        <viewControllerLayoutGuide type="bottom" id="PUa-AN-vsc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jFA-eW-33z">
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genetic Algorithm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GPI-2y-oBe">
+                                <rect key="frame" x="231" y="10" width="139" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Genetic algorithms in Swift" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jnN-s6-df5">
+                                <rect key="frame" x="202" y="41" width="195" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0QC-nV-QGj">
+                                <rect key="frame" x="222" y="81" width="155" height="30"/>
+                                <state key="normal" title="Run Genetic Algorithm"/>
+                                <connections>
+                                    <action selector="runButtonPressed:" destination="yPS-KE-Xlm" eventType="touchUpInside" id="fsb-1x-K4f"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Generation 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NBf-xA-M5F">
+                                <rect key="frame" x="250" y="189.5" width="100" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Best Individual in Population:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hIY-xj-xm8">
+                                <rect key="frame" x="190" y="220.5" width="220" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Best Individual" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zCv-VT-ioz" userLabel="Best Individual Text Lab">
+                                <rect key="frame" x="59.5" y="251.5" width="480" height="214.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="KXl-lF-Gtc">
+                                <rect key="frame" x="58" y="476" width="484" height="31"/>
+                                <connections>
+                                    <action selector="sliderValueChanged:" destination="yPS-KE-Xlm" eventType="valueChanged" id="LKL-R2-ndz"/>
+                                </connections>
+                            </slider>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="KXl-lF-Gtc" firstAttribute="width" secondItem="zCv-VT-ioz" secondAttribute="width" id="2my-kT-vHw"/>
+                            <constraint firstItem="KXl-lF-Gtc" firstAttribute="width" secondItem="jFA-eW-33z" secondAttribute="width" multiplier="8:10" id="72W-Iy-Ufz"/>
+                            <constraint firstItem="NBf-xA-M5F" firstAttribute="centerX" secondItem="jFA-eW-33z" secondAttribute="centerX" id="Flr-Mf-xyY"/>
+                            <constraint firstItem="jnN-s6-df5" firstAttribute="centerX" secondItem="jFA-eW-33z" secondAttribute="centerX" id="Hdz-OA-Nii"/>
+                            <constraint firstItem="zCv-VT-ioz" firstAttribute="top" secondItem="hIY-xj-xm8" secondAttribute="bottom" constant="10" id="Ifv-0Y-pEQ"/>
+                            <constraint firstItem="hIY-xj-xm8" firstAttribute="top" secondItem="NBf-xA-M5F" secondAttribute="bottom" constant="10" id="L6E-Cn-WoJ"/>
+                            <constraint firstItem="KXl-lF-Gtc" firstAttribute="centerX" secondItem="jFA-eW-33z" secondAttribute="centerX" id="Q0y-Ys-wHd"/>
+                            <constraint firstItem="jnN-s6-df5" firstAttribute="top" secondItem="GPI-2y-oBe" secondAttribute="bottom" constant="10" id="Qb5-g0-4vc"/>
+                            <constraint firstItem="0QC-nV-QGj" firstAttribute="centerX" secondItem="jFA-eW-33z" secondAttribute="centerX" id="TNJ-5g-n9a"/>
+                            <constraint firstItem="KXl-lF-Gtc" firstAttribute="top" secondItem="zCv-VT-ioz" secondAttribute="bottom" constant="10" id="UAE-l1-CaY"/>
+                            <constraint firstItem="KXl-lF-Gtc" firstAttribute="centerX" secondItem="jFA-eW-33z" secondAttribute="centerX" id="UX9-DI-Dse"/>
+                            <constraint firstItem="jnN-s6-df5" firstAttribute="centerX" secondItem="jFA-eW-33z" secondAttribute="centerX" id="Uhb-RN-ck6"/>
+                            <constraint firstItem="hIY-xj-xm8" firstAttribute="centerX" secondItem="jFA-eW-33z" secondAttribute="centerX" id="W2p-3S-sKz"/>
+                            <constraint firstItem="GPI-2y-oBe" firstAttribute="centerX" secondItem="jFA-eW-33z" secondAttribute="centerX" id="c0h-0e-xHg"/>
+                            <constraint firstItem="GPI-2y-oBe" firstAttribute="top" secondItem="1Vd-NP-jDb" secondAttribute="bottom" constant="10" id="cVV-ku-Qwl"/>
+                            <constraint firstItem="0QC-nV-QGj" firstAttribute="centerX" secondItem="jFA-eW-33z" secondAttribute="centerX" id="dna-4F-XMK"/>
+                            <constraint firstItem="zCv-VT-ioz" firstAttribute="centerX" secondItem="jFA-eW-33z" secondAttribute="centerX" id="fQN-vK-4pj"/>
+                            <constraint firstItem="GPI-2y-oBe" firstAttribute="centerX" secondItem="jFA-eW-33z" secondAttribute="centerX" id="fjQ-ek-NPc"/>
+                            <constraint firstItem="PUa-AN-vsc" firstAttribute="top" secondItem="KXl-lF-Gtc" secondAttribute="bottom" constant="30" id="jtt-BK-CY2"/>
+                            <constraint firstItem="0QC-nV-QGj" firstAttribute="top" secondItem="jnN-s6-df5" secondAttribute="bottom" constant="10" id="mz3-lx-xjo"/>
+                            <constraint firstItem="NBf-xA-M5F" firstAttribute="centerX" secondItem="jFA-eW-33z" secondAttribute="centerX" id="rQF-cL-aNb"/>
+                            <constraint firstItem="hIY-xj-xm8" firstAttribute="centerX" secondItem="jFA-eW-33z" secondAttribute="centerX" id="tCj-jh-xQb"/>
+                            <constraint firstItem="zCv-VT-ioz" firstAttribute="centerX" secondItem="jFA-eW-33z" secondAttribute="centerX" id="uwP-vP-1VZ"/>
+                            <constraint firstItem="zCv-VT-ioz" firstAttribute="height" secondItem="jFA-eW-33z" secondAttribute="height" multiplier="2:5" id="yA4-b2-5zm"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="FKU-Jj-mh3">
+                        <nil key="title"/>
+                        <view key="titleView" contentMode="scaleToFill" id="8mu-hi-7kh">
+                            <rect key="frame" x="180" y="5.5" width="240" height="33"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="swaift-logo" translatesAutoresizingMaskIntoConstraints="NO" id="OmE-4j-r0s">
+                                    <rect key="frame" x="70" y="2" width="100" height="29"/>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="OmE-4j-r0s" firstAttribute="centerY" secondItem="8mu-hi-7kh" secondAttribute="centerY" id="GNN-XL-eYF"/>
+                                <constraint firstItem="OmE-4j-r0s" firstAttribute="centerX" secondItem="8mu-hi-7kh" secondAttribute="centerX" id="kZw-Ks-GZg"/>
+                            </constraints>
+                        </view>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="bestIndividualTextLabel" destination="zCv-VT-ioz" id="3a6-wk-nRs"/>
+                        <outlet property="currentGenerationTextLabel" destination="NBf-xA-M5F" id="1dd-aZ-lq3"/>
+                        <outlet property="generationSlider" destination="KXl-lF-Gtc" id="QU1-Pe-6nU"/>
+                        <outlet property="runButton" destination="0QC-nV-QGj" id="fxV-39-cxY"/>
+                        <outlet property="targetTextField" destination="jnN-s6-df5" id="R69-1X-FV5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Ep-W2-adU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1672" y="-377"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="yMY-xv-uD3">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jwE-Aj-j1l" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="xKy-1m-sUA">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="yPS-KE-Xlm" kind="relationship" relationship="rootViewController" id="Op4-um-0sg"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DPF-z7-vCw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="688" y="-387"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="swaift-logo" width="100" height="29"/>
+    </resources>
+</document>
