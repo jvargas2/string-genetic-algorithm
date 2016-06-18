@@ -44,26 +44,18 @@ class ViewController: UIViewController, UITextFieldDelegate {
         self.generationSlider.value = Float(self.currentGenerationIndex)
         self.generations.append(Population(targetValue: self.targetTextField.text))
         
-        while self.solutionFound == false {
-            self.generations.append(self.generations.last!.breedNewGeneration())
-            
-            if self.generations.last!.bestIndividual.value == self.targetTextField.text {
-                self.solutionFound = true
-            } else if self.generations.count > 500 {
-                self.solutionFound = true
-            }
-        }
+//        while self.solutionFound == false {
+//            self.generations.append(self.generations.last!.breedNewGeneration())
+//            
+//            if self.generations.last!.bestIndividual.value == self.targetTextField.text {
+//                self.solutionFound = true
+//            } else if self.generations.count > 2 {
+//                self.solutionFound = true
+//            }
+//        }
         
         self.generationSlider.maximumValue = Float(generations.count - 1)
         self.updateView()
-        
-        //        for (i, gen) in self.generations.enumerate() {
-        //            print("Generation \(i)")
-        //
-        //            for ind in gen.individuals {
-        //                print("\(ind.value), \(ind.fitnessScore)")
-        //            }
-        //        }
     }
     
     @IBAction func runButtonPressed(sender: UIButton) {
@@ -90,59 +82,18 @@ struct Population {
     var bestIndividual: Individual!
     
     init(targetValue: String!) {
-        for i in 0...19 {
-            let newIndividual = Individual(targetString: targetValue)
-            self.individuals.append(newIndividual)
-            if i == 0 {
-                self.bestIndividual = newIndividual
-            } else if newIndividual.fitnessScore < bestIndividual.fitnessScore {
-                self.bestIndividual = newIndividual
-            }
-        }
+        self.individuals.append(Individual(targetString: targetValue))
+        self.bestIndividual = self.individuals[0]
     }
     
     init(individuals: Array<Individual>) {
-        self.individuals = individuals
-        self.bestIndividual = self.individuals[0]
-        for ind in self.individuals {
-            if ind.fitnessScore < self.bestIndividual.fitnessScore {
-                self.bestIndividual = ind
-            }
-        }
+        // TODO: initialize from an array of individuals
     }
     
     func breedNewGeneration() -> Population {
-        var newIndividuals = [Individual]()
-        var remainingIndividuals = self.individuals
+        let newIndividuals = [Individual]()
         
-        for _ in 0...((self.individuals.count / 2) - 1) {
-            let firstIndex = Int(arc4random_uniform(UInt32(remainingIndividuals.count - 1)))
-            let firstIndividual = remainingIndividuals[firstIndex]
-            remainingIndividuals.removeAtIndex(firstIndex)
-            let secondIndex = Int(arc4random_uniform(UInt32(remainingIndividuals.count - 1)))
-            let secondIndividual = remainingIndividuals[secondIndex]
-            var fitterInd: Individual
-            
-            if firstIndividual.fitnessScore < secondIndividual.fitnessScore {
-                fitterInd = firstIndividual
-            } else if secondIndividual.fitnessScore < firstIndividual.fitnessScore {
-                fitterInd = secondIndividual
-            } else {
-                let randomBool = arc4random_uniform(2) == 0 ? true : false
-                if randomBool {
-                    fitterInd = firstIndividual
-                } else {
-                    fitterInd = secondIndividual
-                }
-            }
-            
-            newIndividuals.append(fitterInd)
-            let newInd = firstIndividual.breedWith(secondIndividual)
-            if (Int(arc4random_uniform(10)) > 7) {
-                newInd.mutate()
-            }
-            newIndividuals.append(newInd)
-        }
+        // TODO: breed new set of individuals
         
         return Population(individuals: newIndividuals)
     }
