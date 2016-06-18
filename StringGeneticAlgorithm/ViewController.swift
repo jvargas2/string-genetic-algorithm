@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: Properties
     @IBOutlet weak var targetTextField: UITextField!
@@ -26,6 +26,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         self.targetTextField.text = "Genetic algorithms in Swift"
+        self.targetTextField.delegate = self
         
         runGeneticAlgorithm()
     }
@@ -67,11 +68,18 @@ class ViewController: UIViewController {
     
     @IBAction func runButtonPressed(sender: UIButton) {
         runGeneticAlgorithm()
+        view.endEditing(true)
     }
     
     @IBAction func sliderValueChanged(sender: UISlider) {
         self.currentGenerationIndex = Int(sender.value)
         self.updateView()
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        runGeneticAlgorithm()
+        self.view.endEditing(true)
+        return false
     }
 }
 
