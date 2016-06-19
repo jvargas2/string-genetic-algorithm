@@ -44,15 +44,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
         self.generationSlider.value = Float(self.currentGenerationIndex)
         self.generations.append(Population(targetValue: self.targetTextField.text))
         
-//        while self.solutionFound == false {
-//            self.generations.append(self.generations.last!.breedNewGeneration())
-//            
-//            if self.generations.last!.bestIndividual.value == self.targetTextField.text {
-//                self.solutionFound = true
-//            } else if self.generations.count > 2 {
-//                self.solutionFound = true
-//            }
-//        }
+        while self.solutionFound == false {
+            self.generations.append(self.generations.last!.breedNewGeneration())
+            
+            if self.generations.last!.bestIndividual.value == self.targetTextField.text {
+                self.solutionFound = true
+            } else if self.generations.count > 500 {
+                self.solutionFound = true
+            }
+        }
         
         self.generationSlider.maximumValue = Float(generations.count - 1)
         self.updateView()
@@ -91,10 +91,6 @@ struct Population {
                 self.bestIndividual = newIndividual
             }
         }
-        
-        for (i, ind) in self.individuals.enumerate() {
-            print("\(i): \(ind.value), \(ind.fitnessScore)")
-        }
     }
     
     init(individuals: Array<Individual>) {
@@ -108,9 +104,37 @@ struct Population {
     }
     
     func breedNewGeneration() -> Population {
-        let newIndividuals = [Individual]()
+        var newIndividuals = [Individual]()
+        var remainingIndividuals = self.individuals
         
-        // TODO: breed new set of individuals
+        for _ in 0...((self.individuals.count / 2) - 1) {
+            let firstIndex = Int(arc4random_uniform(UInt32(remainingIndividuals.count - 1)))
+            let firstIndividual = remainingIndividuals[firstIndex]
+            remainingIndividuals.removeAtIndex(firstIndex)
+            let secondIndex = Int(arc4random_uniform(UInt32(remainingIndividuals.count - 1)))
+            let secondIndividual = remainingIndividuals[secondIndex]
+            var fitterInd: Individual
+            
+            if firstIndividual.fitnessScore < secondIndividual.fitnessScore {
+                fitterInd = firstIndividual
+            } else if secondIndividual.fitnessScore < firstIndividual.fitnessScore {
+                fitterInd = secondIndividual
+            } else {
+                let randomBool = arc4random_uniform(2) == 0 ? true : false
+                if randomBool {
+                    fitterInd = firstIndividual
+                } else {
+                    fitterInd = secondIndividual
+                }
+            }
+            
+            newIndividuals.append(fitterInd)
+            let newInd = firstIndividual.breedWith(secondIndividual)
+            if (Int(arc4random_uniform(10)) > 7) {
+                newInd.mutate()
+            }
+            newIndividuals.append(newInd)
+        }
         
         return Population(individuals: newIndividuals)
     }
