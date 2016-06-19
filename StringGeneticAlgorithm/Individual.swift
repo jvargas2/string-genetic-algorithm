@@ -22,21 +22,21 @@ class Individual {
             let newGeneChar = Character(UnicodeScalar(newGeneInt))
             self.value.append(newGeneChar)
         }
-        self.fitnessScore = self.calculateFitnessScore()
+        self.calculateFitnessScore()
     }
     
     init(value: String, targetString: String) {
         self.value = value
         self.target = targetString
-        self.fitnessScore = self.calculateFitnessScore()
+        self.calculateFitnessScore()
     }
     
-    private func calculateFitnessScore() -> Float {
-        let fitnessScore:Float = 0.0
+    private func calculateFitnessScore() {
+        let fitness:Float = 0.0
         
         // TODO: calculate fitness score
         
-        return fitnessScore
+        self.fitnessScore = fitness
     }
     
     func breedWith(otherInd: Individual) -> Individual {
@@ -52,7 +52,7 @@ class Individual {
         
         // TODO: mutate new set of genes
         
-        self.fitnessScore = self.calculateFitnessScore()
+        self.calculateFitnessScore()
     }
 }
 
