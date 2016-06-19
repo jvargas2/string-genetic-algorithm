@@ -32,9 +32,17 @@ class Individual {
     }
     
     private func calculateFitnessScore() {
-        let fitness:Float = 0.0
+        var fitness:Float = 0.0
         
-        // TODO: calculate fitness score
+        let selfArray = Array(self.value.characters)
+        let targetArray = Array(self.target.characters)
+        var totalValue = 0
+        for (i, char) in selfArray.enumerate() {
+            let s = Int(char.utf8Value())
+            let t = Int(targetArray[i].utf8Value())
+            totalValue += abs(s - t)
+        }
+        fitness = Float(totalValue) / Float(selfArray.count)
         
         self.fitnessScore = fitness
     }
