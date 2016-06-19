@@ -68,7 +68,11 @@ class Individual {
     func mutate() {
         self.value = ""
         
-        // TODO: mutate new set of genes
+        for _ in 0...(self.target.characters.count - 1) {
+            let newGeneInt = Int(arc4random_uniform(95)) + 32
+            let newGeneChar = Character(UnicodeScalar(newGeneInt))
+            self.value.append(newGeneChar)
+        }
         
         self.calculateFitnessScore()
     }

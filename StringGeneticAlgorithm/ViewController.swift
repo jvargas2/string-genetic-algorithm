@@ -85,6 +85,7 @@ struct Population {
         self.individuals.append(Individual(targetString: targetValue))
         self.individuals.append(Individual(targetString: targetValue))
         self.individuals.append(self.individuals[0].breedWith(self.individuals[1]))
+        self.individuals[2].mutate()
         self.bestIndividual = self.individuals[0]
         for ind in self.individuals {
             print("\(ind.value): \(ind.fitnessScore)")
