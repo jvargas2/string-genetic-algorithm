@@ -82,21 +82,29 @@ struct Population {
     var bestIndividual: Individual!
     
     init(targetValue: String!) {
-        self.individuals.append(Individual(targetString: targetValue))
-        self.individuals.append(Individual(targetString: targetValue))
-        self.individuals.append(self.individuals[0].breedWith(self.individuals[1]))
-        self.individuals[2].mutate()
-        self.bestIndividual = self.individuals[0]
-        for ind in self.individuals {
-            print("\(ind.value): \(ind.fitnessScore)")
-            if ind.fitnessScore < self.bestIndividual.fitnessScore {
-                self.bestIndividual = ind
+        for i in 0...19 {
+            let newIndividual = Individual(targetString: targetValue)
+            self.individuals.append(newIndividual)
+            if i == 0 {
+                self.bestIndividual = newIndividual
+            } else if newIndividual.fitnessScore < bestIndividual.fitnessScore {
+                self.bestIndividual = newIndividual
             }
+        }
+        
+        for (i, ind) in self.individuals.enumerate() {
+            print("\(i): \(ind.value), \(ind.fitnessScore)")
         }
     }
     
     init(individuals: Array<Individual>) {
-        // TODO: initialize from an array of individuals
+        self.individuals = individuals
+        self.bestIndividual = self.individuals[0]
+        for ind in self.individuals {
+            if ind.fitnessScore < self.bestIndividual.fitnessScore {
+                self.bestIndividual = ind
+            }
+        }
     }
     
     func breedNewGeneration() -> Population {
