@@ -83,7 +83,15 @@ struct Population {
     
     init(targetValue: String!) {
         self.individuals.append(Individual(targetString: targetValue))
+        self.individuals.append(Individual(targetString: targetValue))
+        self.individuals.append(self.individuals[0].breedWith(self.individuals[1]))
         self.bestIndividual = self.individuals[0]
+        for ind in self.individuals {
+            print("\(ind.value): \(ind.fitnessScore)")
+            if ind.fitnessScore < self.bestIndividual.fitnessScore {
+                self.bestIndividual = ind
+            }
+        }
     }
     
     init(individuals: Array<Individual>) {

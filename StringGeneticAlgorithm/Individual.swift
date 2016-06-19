@@ -48,9 +48,19 @@ class Individual {
     }
     
     func breedWith(otherInd: Individual) -> Individual {
-        let newValue = ""
+        var newValue = ""
         
-        // TODO: breed new set of genes
+        let selfArray = Array(self.value.characters)
+        let otherArray = Array(otherInd.value.characters)
+        let targetArray = Array(self.target.characters)
+        
+        for (i, char) in selfArray.enumerate() {
+            let s = Int(char.utf8Value())
+            let o = Int(otherArray[i].utf8Value())
+            let t = Int(targetArray[i].utf8Value())
+            let betterInt = abs(s - t) < abs(o - t) ? s : o
+            newValue.append(Character(UnicodeScalar(betterInt)))
+        }
         
         return Individual(value: newValue, targetString: self.target)
     }
