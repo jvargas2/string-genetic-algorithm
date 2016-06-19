@@ -6,7 +6,7 @@
 //  Copyright © 2016 Jorge Vargas. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 class Individual {
     
@@ -22,17 +22,34 @@ class Individual {
             let newGeneChar = Character(UnicodeScalar(newGeneInt))
             self.value.append(newGeneChar)
         }
-        self.fitnessScore = self.calculateFitnessScore()
+        self.calculateFitnessScore()
     }
     
     init(value: String, targetString: String) {
         self.value = value
         self.target = targetString
-        self.fitnessScore = self.calculateFitnessScore()
+        self.calculateFitnessScore()
+    }
+    
+    private func calculateFitnessScore() {
+        var fitness:Float = 0.0
+        
+        let selfArray = Array(self.value.characters)
+        let targetArray = Array(self.target.characters)
+        var totalValue = 0
+        for (i, char) in selfArray.enumerate() {
+            let s = Int(char.utf8Value())
+            let t = Int(targetArray[i].utf8Value())
+            totalValue += abs(s - t)
+        }
+        fitness = Float(totalValue) / Float(selfArray.count)
+        
+        self.fitnessScore = fitness
     }
     
     func breedWith(otherInd: Individual) -> Individual {
         var newValue = ""
+        
         let selfArray = Array(self.value.characters)
         let otherArray = Array(otherInd.value.characters)
         let targetArray = Array(self.target.characters)
@@ -44,6 +61,7 @@ class Individual {
             let betterInt = abs(s - t) < abs(o - t) ? s : o
             newValue.append(Character(UnicodeScalar(betterInt)))
         }
+        
         return Individual(value: newValue, targetString: self.target)
     }
     
@@ -56,34 +74,7 @@ class Individual {
             self.value.append(newGeneChar)
         }
         
-        //        let mIndex = Int(arc4random_uniform(UInt32(self.target.characters.count - 1)))
-        //        var valueArray = Array(self.value.characters)
-        //        let newGeneInt = Int(arc4random_uniform(95)) + 32
-        //        let newGeneChar = Character(UnicodeScalar(newGeneInt))
-        //        valueArray[mIndex] = newGeneChar
-        //        self.value = String(valueArray)
-        
-        self.fitnessScore = self.calculateFitnessScore()
-    }
-    
-    private func calculateFitnessScore() -> Float {
-        let selfArray = Array(self.value.characters)
-        let targetArray = Array(self.target.characters)
-        var totalValue = 0
-        for (i, char) in selfArray.enumerate() {
-            let s = Int(char.utf8Value())
-            let t = Int(targetArray[i].utf8Value())
-            totalValue += abs(s - t)
-        }
-        return Float(totalValue) / Float(selfArray.count)
-    }
-}
-
-// Adapted from http://stackoverflow.com/questions/24102044/how-can-i-get-the-unicode-code-points-of-a-character
-extension String {
-    func unicodeScalarCodePoint() -> UInt32 {
-        let scalars = self.unicodeScalars
-        return scalars[scalars.startIndex].value
+        self.calculateFitnessScore()
     }
 }
 

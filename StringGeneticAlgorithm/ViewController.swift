@@ -56,14 +56,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         self.generationSlider.maximumValue = Float(generations.count - 1)
         self.updateView()
-        
-        //        for (i, gen) in self.generations.enumerate() {
-        //            print("Generation \(i)")
-        //
-        //            for ind in gen.individuals {
-        //                print("\(ind.value), \(ind.fitnessScore)")
-        //            }
-        //        }
     }
     
     @IBAction func runButtonPressed(sender: UIButton) {
