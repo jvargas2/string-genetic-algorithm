@@ -31,6 +31,14 @@ class Individual {
         self.fitnessScore = self.calculateFitnessScore()
     }
     
+    private func calculateFitnessScore() -> Float {
+        let fitnessScore:Float = 0.0
+        
+        // TODO: calculate fitness score
+        
+        return fitnessScore
+    }
+    
     func breedWith(otherInd: Individual) -> Individual {
         let newValue = ""
         
@@ -45,14 +53,6 @@ class Individual {
         // TODO: mutate new set of genes
         
         self.fitnessScore = self.calculateFitnessScore()
-    }
-    
-    private func calculateFitnessScore() -> Float {
-        let fitnessScore:Float = 0.0
-        
-        // TODO: calculate fitness score 
-        
-        return fitnessScore
     }
 }
 
