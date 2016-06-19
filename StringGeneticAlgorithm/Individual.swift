@@ -56,14 +56,6 @@ class Individual {
     }
 }
 
-// Adapted from http://stackoverflow.com/questions/24102044/how-can-i-get-the-unicode-code-points-of-a-character
-extension String {
-    func unicodeScalarCodePoint() -> UInt32 {
-        let scalars = self.unicodeScalars
-        return scalars[scalars.startIndex].value
-    }
-}
-
 // Adapted from http://stackoverflow.com/questions/24463992/converting-character-in-an-array-to-an-integer
 extension Character {
     func utf8Value() -> UInt8 {
